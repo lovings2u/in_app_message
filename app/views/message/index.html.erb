@@ -1,0 +1,26 @@
+<h1><%= params[:act].capitalize %> Messages</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.reverse.each do |message| %>
+      <tr>
+        <td><%= message.created_at.strftime("%m/%d") %></td>
+        <td><%= message.message %></td>
+        <td>
+          <% if params[:act] == 'send' %>
+            <%= message.recipient.email %>
+          <% else %>
+            <%= message.sender.email %>
+          <% end %>
+        </td>
+        <td><%= link_to_if params[:act] == 'receive', '답장하기', new_message_path(user: message.sender.email)%></td>
+        <td><%= link_to '삭제하기', destroy_message_path(message), data: {method: :delete, confirm: '삭제하시겠습니까?'}%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

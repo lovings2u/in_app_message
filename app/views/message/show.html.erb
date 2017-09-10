@@ -1,0 +1,14 @@
+<p>
+  <strong>Sender</strong>
+  <%= @message.sender.email %>
+</p>
+
+<p>
+  <strong>Message</strong>
+  <%= @message.message %>
+</p>
+
+<div class="pull-right">
+  <%= link_to 'Reply', new_message_path, class: "btn btn-danger" %>
+  <%= link_to 'Back', messages_path, class: "btn btn-default" %>
+</div>

@@ -1,0 +1,14 @@
+<p>
+  <strong>Title:</strong>
+  <%= @home.title %>
+</p>
+
+<p>
+  <strong>Contents:</strong>
+  <%= @home.contents %>
+</p>
+
+<div class="pull-right">
+  <%= link_to 'Edit', edit_home_path(@home), class: "btn btn-danger" %>
+  <%= link_to 'Back', homes_path, class: "btn btn-default" %>
+</div>

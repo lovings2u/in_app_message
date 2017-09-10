@@ -1,0 +1,39 @@
+<h1>Posts</h1>
+
+<table class="table table-hover text-center">
+  <thead>
+    <tr>
+      <th width="80%"></th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homes.each do |home| %>
+      <tr>
+        <td width="80%"><%= home.title %></td>
+        <td>
+          <div class="dropdown">
+            <a id="dLabel" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <%= home.user.email %>
+            </a>
+            <ul class="dropdown-menu text-center" aria-labelledby="dLabel">
+              <li style="text-align: center">
+                <%= link_to_if current_user && home.user.email != current_user.email , "Send Message", new_message_path(user: home.user.email) %>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td><%= link_to 'Show', home %></td>
+        <td><%= link_to 'Edit', edit_home_path(home) %></td>
+        <td><%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="text-center">
+  <%= will_paginate @homes %>
+</div>
+<br>
+<%= link_to 'New Home', new_home_path, class: "btn btn-default" %>

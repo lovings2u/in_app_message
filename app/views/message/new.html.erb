@@ -1,0 +1,15 @@
+<%= form_tag (send_message_path) %>
+  <div class="form-group">
+    <%= label_tag :recipient %>
+    <%= text_field_tag :recipient, @recipient.email, class: "form-control", readonly: true %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :message %>
+    <%= text_area_tag :message, "",class: "form-control", rows: 10 %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "보내기", class: "btn btn-info" %>
+    <%= link_to "취소하기", root_path, class: "btn btn-default" %>
+  </div>
+</form>
